@@ -1,12 +1,15 @@
-const form = document.querySelector('form')
-const input = document.querySelector('.input')
-const list = document.querySelector('.list')
+const row = document.querySelector('.row')
+const navItems = document.querySelectorAll('.nav-item')
 
-form.addEventListener('submit', function (e) {
-  e.preventDefault()
-  const data = input.value
-  if (!data) return
-  const html = `<li>${data}</li>`
-  list.insertAdjacentHTML('afterbegin', html)
-  form.reset()
+// TARGETING THE PARENT CLASS
+row.addEventListener('click', function (e) {
+  const current = e.target.closest('.nav-item')
+  if (!current) return
+  navItems.forEach((item) => item.classList.remove('active'))
+  current.classList.add('active')
+})
+
+// HIDE ITEM CLICKING BODY ELEMENT
+document.addEventListener('mouseup', function (e) {
+  navItems.forEach((item) => item.classList.remove('active'))
 })
